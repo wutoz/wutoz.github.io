@@ -6,7 +6,7 @@ category: Masonry
 tags: [Masonry]
 ---
 
-#开源项目[Masonry](https://github.com/Masonry/Masonry)旨在让自动布局（Auto Layout）的代码更简洁，可读性更强。
+开源项目[Masonry](https://github.com/Masonry/Masonry)旨在让自动布局（Auto Layout）的代码更简洁，可读性更强。
 
 
     Masonry is a light-weight layout framework which wraps AutoLayout with a nicer syntax. Masonry has its own layout DSL which provides a chainable way of describing your NSLayoutConstraints which results in layout code that is more concise and readable. Masonry supports iOS and Mac OS X.
