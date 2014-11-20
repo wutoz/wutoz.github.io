@@ -13,7 +13,7 @@ safe: true
 #
 title : 梧桐
 tagline: wutongr
-keywords: [wutongr, 梧桐的博客, wutongr的博客,iOS,Swift, jQuery, bootstrap]
+keywords: [wutongr, 梧桐的博客, wutongr的博客, iOS, Swift, jQuery, bootstrap]
 description: 梧桐的博客,专注iOS技术
 author :
   name : 梧桐
@@ -88,9 +88,9 @@ JB :
   comments :
     provider : duoshuo
     disqus :
-      short_name : wutongr
+      short_name : zcfree8
     duoshuo :
-      short_name : wutongr
+      short_name : zcfree8
    
   # Settings for analytics helper
   # Set 'provider' to the analytics provider you want to use.
