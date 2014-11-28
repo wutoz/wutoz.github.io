@@ -1,10 +1,10 @@
----
+<!-----
 layout: post
 title: 如何使用Masonry简化iOS屏幕适配
 keywords: Masonry
 category: Masonry
 tags: [Masonry]
----
+----->
 
 开源项目[Masonry](https://github.com/Masonry/Masonry)旨在让自动布局（Auto Layout）的代码更简洁，可读性更强。
 
@@ -94,9 +94,31 @@ Masonry 是一种领域特定语言（DSL），为自动布局的所有功能提
     
 frame中使用了四个属性控制view的形状和位置，这在iPhone4s的时代还没有多大的问题。随着iPhone屏幕的增大，特别是iPhone6屏幕宽度的增加，你会发现在iPhone5上运行好好的项目在iPhone6上右边就会空出一小块。那么就必须再加两个属性一起来控制
 
-Masonry设定了六个属性:top, left, bottom, right, width, height 
+我们先来看看Masonry给我们带来了哪些属性和方法
 
-待续...
+1.属性
+
+    left, top, right, bottom, leading, trailing, width, height, centerX, centerY, baseline
+
+2.基础
+
+    equalTo, greaterThanOrEqualTo, lessThanOrEqualTo
     
+*这里很有意思，作者重写block的get方法将具体set方法放进最里层，和我们一般使用block有些不一样（其实还是先set后get，本质无区别）*
+
+3.进阶
+
+    insets, sizeOffset, centerOffset, offset
     
+4.优先级
+
+    priorityLow, priorityMedium, priorityHigh
+    
+5.链式语言
+    
+    with, and
+    
+*起连接作用，并无实际意义*
+
+
 
