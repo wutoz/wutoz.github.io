@@ -1,10 +1,10 @@
-<!-----
+---
 layout: post
 title: 如何使用Masonry简化iOS屏幕适配
 keywords: Masonry
 category: Masonry
 tags: [Masonry]
------>
+---
 
 开源项目[Masonry](https://github.com/Masonry/Masonry)旨在让自动布局（Auto Layout）的代码更简洁，可读性更强。
 
