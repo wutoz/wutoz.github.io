@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ObjC 与 cpp 混编的注意点
+title: Objective-C 与 cpp 混编的注意点
 keywords: 混编
 category: 混编
 tags: [混编]
