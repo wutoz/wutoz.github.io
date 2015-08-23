@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Objective-C编译器指令简介
+title: Objective-C 编译器指令简介
 keywords: 编译器指令
 category: 编译器指令
 tags: [编译器指令]
