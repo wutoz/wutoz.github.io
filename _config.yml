@@ -1,7 +1,7 @@
-title: Long Haul
-description: Long Form Jekyll theme built with SASS / COMPASS / SUSY
+title: 梧桐
+description: iOS软件工程师
 
-url: http://brianmaierjr.github.com/long-haul
+url: http://wutongr.github.com/
 baseurl: ""
 paginate_path: "blog/page:num/"
 permalink: blog/:title/
@@ -19,9 +19,9 @@ navigation:
    url: /contact
 
 social:
-   github: brianmaierjr
-   twitter: brianmaierjr
-   facebook: brianmaierjr
-   email: brimaidesigns@gmail.com
+   github: wutongr
+   twitter: wutongr
+   facebook: wutongr
+   email: zcfree8@gmail.com
 
-google_analytics: "UA-58263416-1"
+# google_analytics: "UA-58263416-1"
