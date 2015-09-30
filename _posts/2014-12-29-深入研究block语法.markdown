@@ -1,0 +1,174 @@
+---
+layout: post
+title: "深入研究block语法"
+date: 2014-12-29
+---
+
+我举一个简单的例子来定义和使用block
+
+    void (^block1)(void) = ^void (void){
+        NSLog(@"hello");
+    };
+    block1();
+    
+是不是很简单啊！么得什么难度嘛！
+
+###block的存在样式
+*.h*
+
+  typedef `returnType`(^`name`)(`arguments`);
+
+    typedef void(^block2)(void);
+    typedef void(^block3)(NSInteger index);
+    
+    -(void)doSomethingWithBlock:(block2)block;
+    
+    @property (nonatomic, strong) block3 block3;
+    @property (nonatomic, strong) dispatch_block_t block4;
+
+*.m*
+
+    self.block4 = ^{
+        NSLog(@"hello");
+    };
+    
+    self.block4();
+    
+    self.block3 = ^(NSInteger index){
+        NSLog(@"%ld",index);
+    };
+    
+    self.block3(1);
+    
+    [self doSomethingWithBlock:^{
+        NSLog(@"hello");
+    }];
+    
+    -(void)doSomethingWithBlock:(block2)block{
+        block();
+    }
+    
+###block的用处
+首先我们可以回想下ASI网络访问处理异步回调的方法，首先得设置当前使用类的代理，然后写两个回调方法
+
+    -(void)requestFinished:(ASIHTTPRequest *)req{
+
+    }
+
+    -(void)requestFailed:(ASIHTTPRequest *)req{
+
+    }
+    
+如果当前类处理请求多的话，那么可能需要设置不同的回调方法以区分
+
+    [request setDidFinishSelector:@selector(topSecretFetchComplete:)];
+	[request setDidFailSelector:@selector(topSecretFetchFailed:)];
+	
+好烦啊，好多个方法👀都看不清了。我们来改一改吧。建一个ASIHTTPRequest的分类
+*ASIHTTPRequest+blockAddtion.h*
+
+    #import "ASIHTTPRequest.h"
+    typedef void (^requestSuccessHandler)(ASIHTTPRequest *request);
+    typedef void (^requestFailedHandler)(ASIHTTPRequest *request);
+
+    @interface ASIHTTPRequest (blockAddtion)<ASIHTTPRequestDelegate>
+
+    -(void)startAsynchronousWithSuccess:(requestSuccessHandler)success failed:(requestFailedHandler)failed;
+
+    @end
+    
+*ASIHTTPRequest+blockAddtion.m*
+
+    #import "ASIHTTPRequest+blockAddtion.h"
+	#import <objc/runtime.h>
+		
+	static NSString * const handlerRunTimeAccosiationKey1 = @"requestSuccessHandler";
+	static NSString * const handlerRunTimeAccosiationKey2 = @"requestFailedHandler";
+		
+	@implementation ASIHTTPRequest (blockAddtion)
+		
+	-(void)startAsynchronousWithSuccess:(requestSuccessHandler)success failed:(requestFailedHandler)failed{
+	    objc_setAssociatedObject(self, (__bridge const void *)(handlerRunTimeAccosiationKey1), success, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+		objc_setAssociatedObject(self, (__bridge const void *)(handlerRunTimeAccosiationKey2), failed, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+		    
+		[self setDelegate:self];
+    }
+		
+	-(void)dealloc{
+	    objc_removeAssociatedObjects(handlerRunTimeAccosiationKey1);
+	    objc_removeAssociatedObjects(handlerRunTimeAccosiationKey2);
+	    [super dealloc];
+	}
+	
+	-(void)requestFinished:(ASIHTTPRequest *)req{
+	    requestSuccessHandler completionHandler = objc_getAssociatedObject(self, (__bridge const void *)(handlerRunTimeAccosiationKey1));
+	    if(completionHandler){
+	        completionHandler(req);
+	    }
+	}
+	
+	-(void)requestFailed:(ASIHTTPRequest *)req{
+	    requestFailedHandler completionHandler = objc_getAssociatedObject(self, (__bridge const void *)(handlerRunTimeAccosiationKey2));
+	    if(completionHandler){
+	        completionHandler(req);
+	    }
+	}
+	
+	@end
+
+
+那么现在我们在数据请求的时候就可以这样写
+
+    [request startAsynchronousWithSuccess:^(ASIHTTPRequest *request) {
+        
+    } failed:^(ASIHTTPRequest *request) {
+        
+    }];
+    
+请求成功或者失败都在里面写就好啦！不过好的是现在主流的网络访问比如AFNetWorking,MKNetWorkKit都支持block了。
+
+###block的风格特点
+block块是c语言的拓展，它以(^)作为标记，省略了函数名，因此也被称作匿名函数。现在Apple官方的API也使用block风格，因此使用的人越来越多。例:NSArray遍历实现
+
+	-(void)enumerateObjectsUsingBlock2:(void (^)(id, NSUInteger, BOOL *))block{
+	    NSEnumerator *enumerator = [self objectEnumerator];
+	    id thing;
+	    NSUInteger idx = 0;
+	    BOOL *stop = malloc(1);
+	    
+	    while (thing = [enumerator nextObject]) {
+	        if(*stop)
+	            break;
+	        block(thing,idx,stop);
+	        idx ++;
+	    }
+	}
+	
+例:链式语法实现
+
+    @interface DemoModule (){
+	    float tip;
+	}
+	
+	@end
+	
+	@implementation DemoModule
+	
+	-(instancetype)init{
+	    if(self = [super init]){
+	        self.mult(20);
+	        
+	        NSLog(@"%f",tip);
+	    }
+	    return self;
+	}
+	
+	-(DemoModule *(^)(float))mult{
+	    return ^id(float multip){
+	        tip = multip;
+	        return self;
+	    };
+	}
+
+
+###block深入探究

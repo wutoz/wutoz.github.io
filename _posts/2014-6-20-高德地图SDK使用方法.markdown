@@ -1,0 +1,29 @@
+---
+layout: post
+title: "iOS使用高德地图SDK示例"
+date: 2014-6-20
+---
+
+ 最近在做一个地图的项目，使用高德地图POI的功能。
+ 下面分享一些过程中遇到的问题：
+
+## 1.资源包导入
+   使用高德地图，必须申请Key，官网上有详细教程。
+   高德地图SDK根据功能划分，提供了3个不同的静态库用作编译，分别是栅格渲染引擎（2D）的MAMapKit库，矢量渲染引擎的MAMapKit库以及搜索服务的AMapSearchKit库，此处可以根据项目的具体需求决定添加。
+
+## 2.基本功能
+   官方提供的Demo中包含了常见的地图功能，省事一点，我们只需要把项目使用到的Models添加进项目，然后根据自己的需求修改Models。
+   
+   /* 根据中心点坐标来搜周边的POI. */
+   
+    - (void)searchPoiByCenterCoordinate
+    {
+        AMapPlaceSearchRequest *request = [[AMapPlaceSearchRequest alloc] init];
+        request.searchType = AMapSearchType_PlaceAround;
+        request.location = [AMapGeoPoint locationWithLatitude:self.mapView.userLocation.coordinate.latitude    longitude:self.mapView.userLocation.coordinate.longitude];
+        //request.keywords = @"餐饮";
+        /* 按照距离排序. */
+        request.sortrule = 1;
+        request.requireExtension = YES;
+        [self.search AMapPlaceSearch:request];
+    }
