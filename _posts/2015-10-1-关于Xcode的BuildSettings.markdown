@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 关于 Xcode 的 Build Settings
-date: 2015-8-23
+date: 2015-10-1
 ---
 
 官方文档 [Xcode Build Setting Reference](https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW105) 有介绍构建设置每个项的含义。这里我主要挑选几个使用比较多的作分享。
