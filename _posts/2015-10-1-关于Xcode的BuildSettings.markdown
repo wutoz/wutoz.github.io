@@ -40,7 +40,7 @@ Build Settings 中的项对应关系是 HEADER_SEARCH_PATHS <-> Header Search Pa
 ####6.Enable Bitcode 项
 *iOS9 新加入项，对于某些第三方库可能还不支持，需要设置为 No*
 
-####7.Search Paths
+####7.Search Paths 项
 Framework Search Paths
 
   *加载 .framework 路径*
@@ -54,3 +54,9 @@ Library Search Paths
   *加载 .a 路径*
   
 可以参考 [Clarify different Search Paths](http://stackoverflow.com/questions/8342982/ios-clarify-different-search-paths)
+
+####8.Other Warning Flags 项
+设置是否提示警告，当你的项目有几百个⚠️而又暂时无法消除时，试试设置这个项。
+
+		-Wno-format
+		-Wno-shorten-64-to-32
