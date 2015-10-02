@@ -1,0 +1,9 @@
+---
+layout: post
+title: "Swift学习笔记"
+date: 2015-10-2
+---
+
+正式开始学习Swift。
+
+####第一天
