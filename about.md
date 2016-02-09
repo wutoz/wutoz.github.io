@@ -16,7 +16,7 @@ title: About 梧桐
 		<li>Ruby</li>
 		<li>JavaScript</li>
 		<li>...</li>
-	</ul>>
+	</ul>
 	<h2>友情链接</h2>
 	<ul>
 		<li>Faceless Man <a href="http://www.yanhaijing.com/">颜海镜</a></li>
