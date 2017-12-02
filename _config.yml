@@ -13,9 +13,9 @@ paginate: 5
 navigation:
  - title: 主页
    url: /index.html
- - title: 关于
+ - title: 关于作者
    url: /about
- - title: 联系
+ - title: 联系方式
    url: /contact
 
 social:
