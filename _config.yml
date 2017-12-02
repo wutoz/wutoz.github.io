@@ -11,11 +11,11 @@ highlighter: pygments
 paginate: 5
 
 navigation:
- - title: Home
+ - title: 主页
    url: /index.html
- - title: About
+ - title: 关于
    url: /about
- - title: Contact
+ - title: 联系
    url: /contact
 
 social:
