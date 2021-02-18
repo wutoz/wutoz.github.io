@@ -1,7 +1,7 @@
 title: 梧桐
 description: iOS软件工程师
 
-url: http://wutongr.github.com/
+url: http://wuto1.github.com/
 baseurl: ""
 paginate_path: "blog/page:num/"
 permalink: blog/:title/
