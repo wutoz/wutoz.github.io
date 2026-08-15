@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="关于作者"
+  description="关于梧桐：移动前端技术专家、iOS/Android/HarmonyOS 三端与全栈工程师。"
+>
+  <article class="page page-about">
+    <header class="page-header">
+      <div class="container">
+        <p class="page-eyebrow">About</p>
+        <h1 class="page-title">关于梧桐</h1>
+      </div>
+    </header>
+
+    <div class="page-content container">
+      <p class="lead">10+ 年移动前端架构经验，长期负责证券应用的 0 到 1 架构建设与端到端工程化。</p>
+
+      <h2>基本情况</h2>
+      <ul>
+        <li>10+ 年移动前端架构经验，主导过百万日活证券 APP 的架构建设。</li>
+        <li>负责公司证券主 APP 与智能助手 APP 的研发，关注稳定性与用户体验。</li>
+        <li>上线智能助手 AI 端侧方案，建设端侧 Skills 体系，开发开放生态渠道插件。</li>
+      </ul>
+
+      <h2>工程化与团队</h2>
+      <ul>
+        <li>主导搭建前端 DevOps 体系：CI/CD、自动化监控与发布规范。</li>
+        <li>负责移动组基建与流程标准化，持续提升研发效率与交付质量。</li>
+        <li>协同 9 人团队开展全栈研发。</li>
+      </ul>
+
+      <h2>技术栈</h2>
+      <ul class="tag-list">
+        <li>iOS</li>
+        <li>Android</li>
+        <li>HarmonyOS</li>
+        <li>H5 / 混合开发</li>
+        <li>Java</li>
+        <li>数据库</li>
+        <li>Nginx</li>
+        <li>JavaScript / TypeScript</li>
+      </ul>
+
+      <h2>AI 探索与未来</h2>
+      <ul>
+        <li>聚焦 AI 技术落地，关注「AI+证券」「AI+办公」两大场景。</li>
+        <li>研究端侧 AI 能力（AGUI / A2A / A2UI），探索移动端 AI 原生应用场景。</li>
+        <li>持续参与 AI 技术迁移与成果转化，推动价值真正落地。</li>
+      </ul>
+
+      <h2>友情链接</h2>
+      <ul>
+        <li><a href="http://www.yanhaijing.com/" target="_blank" rel="noopener">颜海镜</a> &mdash; Faceless Man</li>
+      </ul>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .page-header { padding: 4.5rem 0 2rem; }
+
+  .page-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--brand);
+    margin-bottom: 0.75rem;
+  }
+
+  .page-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.25rem, 6vw, 3.5rem);
+    letter-spacing: -0.03em;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .page-content {
+    padding: 2rem 0 4rem;
+    font-family: var(--font-serif);
+    line-height: 1.85;
+  }
+
+  .lead {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+
+  .page-content h2 {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-tertiary);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin: 3rem 0 1rem;
+  }
+
+  .tag-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .tag-list li {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    margin: 0;
+  }
+</style>

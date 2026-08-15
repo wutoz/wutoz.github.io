@@ -1,0 +1,253 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { postSlug } from '../content/config';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+}
+
+const { post } = Astro.props;
+const dateISO = post.data.date.toISOString().slice(0, 10);
+const dateHuman = post.data.date.toLocaleDateString('zh-CN', {
+  year: 'numeric', month: 'long', day: 'numeric',
+});
+
+// Compute prev / next across all non-draft posts sorted newest-first
+const all = (await getCollection('posts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const idx = all.findIndex((p) => p.id === post.id);
+const prev = idx < all.length - 1 ? all[idx + 1] : null; // older
+const next = idx > 0 ? all[idx - 1] : null; // newer
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  pageType="article"
+>
+  <article class="post">
+    <header class="post-header">
+      <div class="container">
+        <h1 class="post-title">{post.data.title}</h1>
+        <p class="post-meta">
+          <time datetime={dateISO}>{dateHuman}</time>
+          {post.data.categories.length > 0 && (
+            <>
+              <span class="meta-sep" aria-hidden="true">·</span>
+              <span class="post-categories">
+                {post.data.categories.map((cat) => (
+                  <span class="category-tag">{cat}</span>
+                ))}
+              </span>
+            </>
+          )}
+        </p>
+      </div>
+    </header>
+
+    <div class="post-content">
+      <div class="container">
+        <slot />
+      </div>
+    </div>
+
+    <nav class="post-nav container" aria-label="文章导航">
+      <div class="post-nav-grid">
+        {prev ? (
+          <a class="nav-link nav-prev" href={`/blog/${postSlug(prev)}/`}>
+            <span class="nav-label">← 上一篇</span>
+            <span class="nav-title">{prev.data.title}</span>
+          </a>
+        ) : (
+          <span class="nav-link nav-disabled" aria-hidden="true"></span>
+        )}
+
+        {next ? (
+          <a class="nav-link nav-next" href={`/blog/${postSlug(next)}/`}>
+            <span class="nav-label">下一篇 →</span>
+            <span class="nav-title">{next.data.title}</span>
+          </a>
+        ) : (
+          <span class="nav-link nav-disabled" aria-hidden="true"></span>
+        )}
+      </div>
+    </nav>
+  </article>
+</BaseLayout>
+
+<style is:global>
+  /* Article prose — global because Markdown HTML flows through here. */
+  .post-content {
+    padding-bottom: 3rem;
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    line-height: 1.85;
+    color: var(--text);
+  }
+  .post-content h2,
+  .post-content h3,
+  .post-content h4 { margin-top: 2.5rem; }
+
+  .post-content img {
+    border-radius: var(--radius);
+    margin: 2rem auto;
+    border: 1px solid var(--border);
+  }
+
+  .post-content figure { margin: 2rem 0; }
+  .post-content figure figcaption {
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
+
+  .post-content blockquote {
+    border-left: 3px solid var(--brand);
+    padding-left: 1.25rem;
+    margin-left: 0;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .post-content code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    background: var(--surface-2);
+    padding: 0.15em 0.4em;
+    border-radius: var(--radius-sm);
+  }
+
+  .post-content pre {
+    background: var(--code-bg);
+    color: var(--text);
+    padding: 1.25rem 1.5rem;
+    border-radius: var(--radius);
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    font-size: 0.875rem;
+    line-height: 1.65;
+    margin: 1.5rem 0;
+  }
+  .post-content pre code {
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  .post-content table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+  .post-content th,
+  .post-content td {
+    padding: 0.625rem 0.875rem;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+  }
+  .post-content th {
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .post-content hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 3rem 0;
+  }
+</style>
+
+<style>
+  .post-header { padding: 3.5rem 0 2rem; }
+
+  .post-header .post-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-family: var(--font-serif);
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    line-height: 1.15;
+  }
+
+  .post-meta {
+    color: var(--text-tertiary);
+    font-size: 0.875rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .meta-sep { color: var(--text-tertiary); }
+  .post-categories { display: inline-flex; gap: 0.25rem; flex-wrap: wrap; }
+
+  .category-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    padding: 0.125rem 0.5rem;
+    background: var(--surface-2);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .post-nav {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .post-nav-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: all var(--t-fast);
+    text-decoration: none;
+    color: var(--text);
+  }
+  .nav-link:hover {
+    border-color: var(--brand);
+    background: var(--surface-2);
+    color: var(--text);
+  }
+  .nav-link.nav-next { text-align: right; }
+  .nav-link.nav-disabled {
+    border: none;
+    background: transparent;
+    padding: 1rem 0;
+  }
+
+  .nav-label {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-tertiary);
+    display: block;
+    margin-bottom: 0.25rem;
+    font-family: var(--font-mono);
+  }
+
+  .nav-title {
+    font-family: var(--font-serif);
+    color: var(--text);
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    display: block;
+  }
+
+  @media (max-width: 640px) {
+    .post-nav-grid { grid-template-columns: 1fr; }
+    .post-content { font-size: 1rem; }
+  }
+</style>

@@ -1,0 +1,22 @@
+# Astro / build artifacts
+dist/
+.astro/
+node_modules/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Editor / OS
+.DS_Store
+*.swp
+*.swo
+*.log
+.idea/
+.vscode/
+
+# Local-only memory + backups (not for remote)
+.workbuddy-ai/backups/
+.workbuddy-ai/memory/
+.workbuddy-ai/state/

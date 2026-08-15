@@ -1,0 +1,157 @@
+---
+const pathname = Astro.url.pathname;
+
+const nav = [
+  { label: '主页',   href: '/' },
+  { label: '关于作者', href: '/about' },
+  { label: '联系方式', href: '/contact' },
+  { label: 'GitHub', href: 'https://github.com/wutoz', external: true },
+];
+
+function isCurrent(item: typeof nav[number]) {
+  if (item.external) return false;
+  if (item.href === '/') return pathname === '/' || pathname === '/index.html';
+  return pathname === item.href || pathname.startsWith(item.href + '/');
+}
+---
+
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="返回主页">
+      <span class="brand-mark" aria-hidden="true">W</span>
+      <span class="brand-name">梧桐</span>
+    </a>
+
+    <nav class="site-nav" aria-label="主导航">
+      <ul class="nav-list">
+        {nav.map((item) => {
+          const current = isCurrent(item);
+          return (
+            <li>
+              <a
+                href={item.href}
+                class={current ? 'is-current' : ''}
+                aria-current={current ? 'page' : undefined}
+                {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              >
+                {item.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+
+    <button
+      class="theme-toggle"
+      type="button"
+      aria-label="切换主题"
+      aria-pressed="false"
+      title="切换主题"
+    >
+      <span class="theme-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--header-bg);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-top: 0.875rem;
+    padding-bottom: 0.875rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 1.0625rem;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .brand:hover { color: var(--brand-strong); }
+
+  .brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: var(--brand);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-serif);
+    font-size: 0.9375rem;
+  }
+
+  .site-nav { flex: 1; min-width: 0; }
+
+  .nav-list {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+  }
+  .nav-list li { margin: 0; }
+
+  .nav-list a {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    padding: 0.25rem 0;
+    display: inline-block;
+    transition: color var(--t-fast);
+    text-decoration: none;
+  }
+  .nav-list a:hover { color: var(--text); }
+  .nav-list a.is-current {
+    color: var(--text);
+    border-bottom: 2px solid var(--brand);
+  }
+
+  .theme-toggle {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all var(--t-fast);
+  }
+  .theme-toggle:hover {
+    color: var(--text);
+    border-color: var(--brand);
+  }
+
+  .theme-icon { font-size: 14px; line-height: 1; }
+  .theme-icon::before { content: '\263E'; }
+  :global(body.theme-light) .theme-icon::before { content: '\2600'; }
+  :global(body.theme-dark)  .theme-icon::before { content: '\263E'; }
+
+  @media (max-width: 640px) {
+    .header-inner { gap: 1rem; flex-wrap: wrap; }
+    .nav-list { gap: 1rem; flex-wrap: wrap; }
+    .site-nav { order: 3; flex-basis: 100%; }
+  }
+</style>

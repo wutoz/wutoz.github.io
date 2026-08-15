@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="联系方式"
+  description="梧桐的联系方式。"
+>
+  <article class="page page-contact">
+    <header class="page-header">
+      <div class="container">
+        <p class="page-eyebrow">Contact</p>
+        <h1 class="page-title">联系方式</h1>
+      </div>
+    </header>
+
+    <div class="page-content container">
+      <p class="lead">欢迎交流技术、产品，或者任何让人觉得「这事有意思」的话。</p>
+
+      <h2>通道</h2>
+      <ul class="contact-list">
+        <li>
+          <span class="contact-label">Email</span>
+          <a href="mailto:zcfree8@gmail.com">zcfree8@gmail.com</a>
+        </li>
+        <li>
+          <span class="contact-label">GitHub</span>
+          <a href="https://github.com/wutoz" target="_blank" rel="noopener noreferrer">@wutoz</a>
+        </li>
+        <li>
+          <span class="contact-label">RSS</span>
+          <a href="/rss.xml">订阅</a>
+        </li>
+      </ul>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .page-header { padding: 4.5rem 0 2rem; }
+
+  .page-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--brand);
+    margin-bottom: 0.75rem;
+  }
+
+  .page-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.25rem, 6vw, 3.5rem);
+    letter-spacing: -0.03em;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .page-content {
+    padding: 2rem 0 4rem;
+    font-family: var(--font-serif);
+    line-height: 1.85;
+  }
+
+  .lead {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+
+  .page-content h2 {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-tertiary);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin: 3rem 0 1rem;
+  }
+
+  .contact-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .contact-list li {
+    padding: 1.125rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin: 0;
+  }
+
+  .contact-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    letter-spacing: 0.12em;
+    min-width: 60px;
+  }
+</style>

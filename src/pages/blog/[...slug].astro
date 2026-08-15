@@ -1,0 +1,27 @@
+---
+import PostLayout from '../../layouts/PostLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { postSlug } from '../../content/config';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    // The `slug` URL segment matches the old Jekyll permalink, i.e.
+    // everything after the leading `YYYY-MM-DD-` date prefix.
+    params: { slug: postSlug(post) },
+    props: { post, slug: postSlug(post) },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+  slug: string;
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<PostLayout post={post}>
+  <Content />
+</PostLayout>

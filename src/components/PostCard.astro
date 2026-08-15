@@ -1,0 +1,111 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { postSlug } from '../content/config';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+  showCategories?: boolean;
+}
+
+const { post, showCategories = true } = Astro.props;
+const dateISO = post.data.date.toISOString().slice(0, 10);
+
+// Excerpt: prefer front-matter description, else take first ~180 chars of body
+function makeExcerpt(body: string, max = 180): string {
+  const cleaned = body.replace(/```[\s\S]*?```/g, '')
+                      .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+                      .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+                      .replace(/[#>*_`~]/g, '')
+                      .replace(/\s+/g, ' ')
+                      .trim();
+  return cleaned.length > max ? cleaned.slice(0, max) + '…' : cleaned;
+}
+
+const excerpt = post.data.description ?? makeExcerpt(post.body);
+const href = `/blog/${postSlug(post)}/`;
+---
+
+<li class="post-entry">
+  <time class="post-date" datetime={dateISO}>{dateISO}</time>
+  <div class="post-body">
+    <h3 class="post-title">
+      <a href={href}>{post.data.title}</a>
+    </h3>
+    <p class="post-excerpt">{excerpt}</p>
+    {showCategories && post.data.categories.length > 0 && (
+      <div class="post-categories">
+        {post.data.categories.map((cat) => (
+          <span class="category-tag">{cat}</span>
+        ))}
+      </div>
+    )}
+  </div>
+</li>
+
+<style>
+  .post-entry {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 2rem;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--border);
+    list-style: none;
+  }
+  .post-entry:last-child { border-bottom: none; }
+
+  .post-date {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+    padding-top: 0.4rem;
+    letter-spacing: -0.01em;
+  }
+
+  .post-title {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+  .post-title a { color: var(--text); text-decoration: none; }
+  .post-title a:hover { color: var(--brand-strong); }
+
+  .post-excerpt {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    margin: 0 0 0.75rem;
+    font-family: var(--font-serif);
+  }
+
+  .post-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .category-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    padding: 0.125rem 0.5rem;
+    background: var(--surface-2);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0 0.25rem 0.25rem 0;
+  }
+
+  @media (max-width: 640px) {
+    .post-entry {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+      padding: 1.5rem 0;
+    }
+    .post-date { font-size: 0.75rem; }
+  }
+</style>
