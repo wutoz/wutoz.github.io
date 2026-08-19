@@ -117,6 +117,13 @@ button { background: none; border: none; padding: 0; cursor: pointer; font: inhe
   padding: 0 1.25rem;
 }
 
+.container-wide {
+  width: 100%;
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
 @media (max-width: 640px) {
   .container { padding: 0 1rem; }
   body { font-size: 16px; }
