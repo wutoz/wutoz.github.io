@@ -7,8 +7,6 @@ tags: [mobile-delivery-workflow, Codex, 工程实践, 移动端, 交付流程]
 draft: false
 ---
 
-# 把移动端 AI 开发组织成可检查的交付流程
-
 > `mobile-delivery-workflow` 是一套接入现有代码仓库的移动端需求交付工作流。它负责组织需求、设计、开发、测试、评审和合入，不负责替代编码规范、构建系统、CI 或人工批准。
 
 ![移动端 AI 交付工作流头图](../../assets/posts/hero-v2.png)
