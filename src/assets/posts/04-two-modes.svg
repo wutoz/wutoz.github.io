@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <defs><linearGradient id="bg4" x1="0" x2="1"><stop stop-color="#071526"/><stop offset="1" stop-color="#181338"/></linearGradient></defs>
+  <rect width="1200" height="675" rx="30" fill="url(#bg4)"/>
+  <text x="70" y="84" fill="#fff" font-size="36" font-weight="700" font-family="Arial,'PingFang SC'">两种执行模式，同一套职责边界</text>
+  <g font-family="Arial,'PingFang SC'">
+    <rect x="70" y="145" width="500" height="400" rx="28" fill="#10223a" stroke="#22d3ee"/>
+    <text x="110" y="205" fill="#67e8f9" font-size="26" font-weight="700">Codex 协作代理模式</text>
+    <text x="110" y="252" fill="#94a3b8" font-size="19">codex-subagent</text>
+    <g fill="#fff" font-size="21"><text x="110" y="320">BA / SA / Developer / Test / Reviewer</text><text x="110" y="365">分别由真实子代理执行</text><text x="110" y="410">记录 agent id、回执、路径与哈希</text><text x="110" y="455">回执由状态流转一次性消费</text></g>
+    <rect x="630" y="145" width="500" height="400" rx="28" fill="#211b3f" stroke="#a78bfa"/>
+    <text x="670" y="205" fill="#c4b5fd" font-size="26" font-weight="700">通用平台直接角色模式</text>
+    <text x="670" y="252" fill="#94a3b8" font-size="19">direct-no-subagent</text>
+    <g fill="#fff" font-size="21"><text x="670" y="320">不伪造子代理与 agent id</text><text x="670" y="365">用具名 Owner 承担专业角色</text><text x="670" y="410">用独立复核证据保持制衡</text><text x="670" y="455">同样执行阶段产物与脚本门禁</text></g>
+  </g>
+  <path d="M570 345h60" stroke="#64748b" stroke-width="5" stroke-dasharray="8 9"/>
+  <text x="600" y="615" text-anchor="middle" fill="#cbd5e1" font-size="20" font-family="Arial,'PingFang SC'">能力不同，可以换执行方式；责任与证据标准不能缩水</text>
+</svg>

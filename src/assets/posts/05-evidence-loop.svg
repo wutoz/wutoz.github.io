@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <rect width="1200" height="675" rx="30" fill="#081426"/>
+  <text x="70" y="84" fill="#fff" font-size="36" font-weight="700" font-family="Arial,'PingFang SC'">证据闭环：聊天不是状态，文件也不是通过</text>
+  <g font-family="Arial,'PingFang SC'" text-anchor="middle">
+    <circle cx="600" cy="350" r="100" fill="#172554" stroke="#38bdf8" stroke-width="3"/><text x="600" y="338" fill="#fff" font-size="28" font-weight="700">workflow-state.json</text><text x="600" y="377" fill="#7dd3fc" font-size="20">机器控制状态真相</text>
+    <g><rect x="90" y="160" width="240" height="105" rx="20" fill="#10243d" stroke="#38bdf8"/><text x="210" y="205" fill="#fff" font-size="23">真实工程现场</text><text x="210" y="239" fill="#94a3b8" font-size="17">分支 · diff · 源码</text></g>
+    <g><rect x="870" y="160" width="240" height="105" rx="20" fill="#211b3f" stroke="#a78bfa"/><text x="990" y="205" fill="#fff" font-size="23">阶段交付物</text><text x="990" y="239" fill="#94a3b8" font-size="17">Brief · Design · Report</text></g>
+    <g><rect x="90" y="460" width="240" height="105" rx="20" fill="#12352f" stroke="#34d399"/><text x="210" y="505" fill="#fff" font-size="23">验证与评审</text><text x="210" y="539" fill="#94a3b8" font-size="17">测试 · CI · 截图 · 日志</text></g>
+    <g><rect x="870" y="460" width="240" height="105" rx="20" fill="#32231c" stroke="#fb923c"/><text x="990" y="505" fill="#fff" font-size="23">合入证据</text><text x="990" y="539" fill="#94a3b8" font-size="17">PR/MR · commit · 批准人</text></g>
+    <path d="M330 218C455 205 485 250 520 290" fill="none" stroke="#38bdf8" stroke-width="5"/><path d="M870 218C745 205 715 250 680 290" fill="none" stroke="#a78bfa" stroke-width="5"/><path d="M330 515C455 530 485 455 520 410" fill="none" stroke="#34d399" stroke-width="5"/><path d="M870 515C745 530 715 455 680 410" fill="none" stroke="#fb923c" stroke-width="5"/>
+  </g>
+  <text x="600" y="625" text-anchor="middle" fill="#cbd5e1" font-size="20" font-family="Arial,'PingFang SC'">status.md 面向人阅读；机器状态负责拒绝非法流转</text>
+</svg>

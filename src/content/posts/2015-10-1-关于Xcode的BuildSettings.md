@@ -14,7 +14,7 @@ date: 2015-10-1
 #### 2.项目需要打出不同渠道的包
 *配置 Configurations*
 
-![image](/images/configurations.png)
+![image](../../assets/posts/configurations.png)
 
 #### 3.自定义配置项
 (1) 如同 CocoaPods 加入 xcconfig 文件

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#081225"/><stop offset="1" stop-color="#172554"/></linearGradient>
+    <linearGradient id="a1" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#22d3ee"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient>
+    <filter id="shadow1"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-opacity=".28"/></filter>
+  </defs>
+  <rect width="1200" height="675" rx="30" fill="url(#bg1)"/>
+  <text x="70" y="86" fill="#fff" font-size="36" font-weight="700" font-family="Arial,'PingFang SC'">从一次 AI 对话，到一条受控交付流程</text>
+  <g font-family="Arial,'PingFang SC'" filter="url(#shadow1)">
+    <rect x="70" y="150" width="310" height="390" rx="26" fill="#111c35" stroke="#334155"/>
+    <text x="105" y="205" fill="#94a3b8" font-size="22">局部任务加速</text>
+    <text x="105" y="278" fill="#fff" font-size="28" font-weight="700">“把单项工作做快”</text>
+    <text x="105" y="360" fill="#fda4af" font-size="20">目标与约束能否传递</text>
+    <text x="105" y="414" fill="#fda4af" font-size="20">生成结果是否经过验证</text>
+    <text x="105" y="468" fill="#fda4af" font-size="20">变更与决策是否可追溯</text>
+    <path d="M430 345h160" stroke="url(#a1)" stroke-width="12" stroke-linecap="round"/><path d="m570 320 35 25-35 25" fill="none" stroke="#8b5cf6" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="650" y="150" width="480" height="390" rx="26" fill="#0f213d" stroke="#22d3ee"/>
+    <text x="690" y="205" fill="#67e8f9" font-size="22">mobile-delivery-workflow</text>
+    <text x="690" y="275" fill="#fff" font-size="28" font-weight="700">“让交付过程可执行、可检查”</text>
+    <g fill="#cbd5e1" font-size="20"><text x="690" y="344">规则：先定义边界</text><text x="690" y="388">流程：再组织阶段</text><text x="690" y="432">角色：分开提出、实现与批准</text><text x="690" y="476">脚本：最后用证据过门禁</text></g>
+  </g>
+  <text x="600" y="620" text-anchor="middle" fill="#94a3b8" font-size="18" font-family="Arial,'PingFang SC'">目标不是让模型多写几行，而是让交付过程有记录、可检查</text>
+</svg>
