@@ -17,12 +17,12 @@ OpenUI 采用代码生成方式，适用于界面原型和自定义视觉表达�
 
 ## 一、评估范围与数据说明
 
-评估日期为 2026 年 9 月 26 日。评估对象为三套自建 Demo，覆盖资讯列表、行情分时图、登录表单和数据仪表盘四类场景，包含九张运行截图、177 项断言和 36 组测试。A2UI Demo 按 v0.9.1 协议进行比较。
+评估日期为 2026 年 9 月 26 日。评估对象为三套自建 Demo，覆盖资讯列表、行情分时图、登录表单和数据仪表盘四类场景，包含六张场景截图、177 项断言和 36 组测试。A2UI Demo 按 v0.9.1 协议进行比较。
 
 | 评估项 | 内容 | 统计范围 |
 | --- | --- | --- |
 | 场景实现 | 资讯列表、行情分时图、登录表单、数据仪表盘 | 页面输出及组件组织方式 |
-| 运行截图 | 三套 Demo 首页及资讯、行情页面 | 使用 puppeteer-core 与 Chrome 截取 |
+| 运行截图 | 三套 Demo 的资讯、行情页面 | 使用 puppeteer-core 与 Chrome 截取 |
 | 输出规模 | 字符数、组件数、Token 估算值 | Demo API 响应内容 |
 | 响应时间 | 五轮请求的平均耗时 | Demo 接口耗时 |
 | 自动化测试 | 177 项断言、36 组测试 | 三套 Demo 的本地测试 |
@@ -364,20 +364,6 @@ gen-ui-comparison/
 | 生成一个登录表单 | 比较交互型页面 |
 | 生成一个数据仪表盘 | 比较统计展示型页面 |
 | 生成一个用户资料卡片 | 补充观察卡片展示；不计入四项量化场景 |
-
-## 附录：Demo 首页
-
-![OpenUI Demo 首页](/images/posts/generative-ui-comparison/openui-home.png)
-
-图 7：OpenUI Demo 首页。
-
-![A2UI Demo 首页](/images/posts/generative-ui-comparison/a2ui-home.png)
-
-图 8：A2UI Demo 首页。
-
-![json-render Demo 首页](/images/posts/generative-ui-comparison/json-render-home.png)
-
-图 9：json-render Demo 首页。
 
 ## 参考资料
 
